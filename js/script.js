@@ -43,36 +43,27 @@ window.onload = function()
 
 function rotate_mesh(e)
 {
-    // mousex = ( event.clientX / window.innerWidth ) * 2 - 1;
-    // mousey = - ( event.clientY / window.innerHeight ) * 2 + 1;
-    // mesh.rotation.y =THREE.MathUtils.lerp(mesh.rotation.y, (mousex * Math.PI) / 10, 0.1);
-    // mesh.rotation.x = THREE.MathUtils.lerp(mesh.rotation.x, (mousey * Math.PI) / 10, 0.1);
     mesh.rotation.x = (vector_current.y - (vector.y - vector_down.y));
     mesh.rotation.y = (vector_current.x - (vector.x - vector_down.x));
-    
-    
+      
     animation_request = requestAnimationFrame(rotate_mesh);
 }
 
 window.onmousemove = function(e)
 {
-    //vector.set((e.clientX / canvas_width) * 2 - 1, -(e.clientY / canvas_height) * 2 + 1,0);
-
     vector.set(e.clientX / canvas_width, e.clientY / canvas_height, 0);
-
-    //vector.unproject(camera);
-    //console.log(vector.x + " " + vector.y);
 }
 
 window.onmousedown = function(e)
 {
-    vector_down.set(e.clientX / canvas_width, e.clientY / canvas_height, 0);
     animation_request = requestAnimationFrame(rotate_mesh);
-
+    vector_down.set(e.clientX / canvas_width, e.clientY / canvas_height, 0);
 }
 
 window.onmouseup = function()
 {
+    vector_current.x = mesh.rotation.x;
+    vector_current.y = mesh.rotation.y;
     cancelAnimationFrame(animation_request);
 }
 
@@ -86,7 +77,6 @@ function load_texture(new_texture)
 
 function set_texture()
 {
-    const input = document.getElementById("file_input");
     texture = load_texture("textures/" + document.getElementById("file_input").files[0].name);
     mesh.material = new THREE.MeshBasicMaterial({map: texture});
 

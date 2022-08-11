@@ -1,0 +1,18 @@
+{
+  "name": "mcresource",
+  "version": "1.0.0",
+  "main": "js/script",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "45P3R4",
+  "license": "ISC",
+  "dependencies": {
+    "@types/three": "^0.143.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.21.0"
+  },
+  "description": ""
+}
